@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 @SpringBootApplication
 public class Listaa1Application {
@@ -114,10 +115,86 @@ public class Listaa1Application {
             System.out.println("Matriz não é esparsa");
         }
     }
+
+    public void questao5(){
+
+
+        System.out.println("Digite uma sequência de números:");
+        String inputt = input.nextLine();
+
+        String[] inputArray = inputt.split(",");
+        int[] numero = new int[inputArray.length];
+
+        for (int i = 0; i < inputArray.length; i++){
+            numero[i] = Integer.parseInt(inputArray[i].trim());
+        }
+
+        int maxA = numero[0];
+        int Max = numero[0];
+        for (int i = 1; i < numero.length; i++){
+            Max = Math.max(numero[i], Max + numero[i]);
+            maxA = Math.max(maxA, Max);
+        }
+
+        System.out.println("A soma máxima da subsequência é: " + Max);
+    }
+
+    public void questao6(){
+        System.out.println("Digite números aleatórios(N):");
+        int n = input.nextInt();
+
+        if(n <= 0 || n > 1000){
+            System.out.println("Insira um valor entre 1 e 1000.");
+            return;
+        }
+
+        // https://docs.oracle.com/javase/8/docs/api/?java/util/TreeSet.html
+        // Retorna uma tree vazia, sorteada de acordo com a ordem natural dos elementos.
+        TreeSet<Integer> numeros = new TreeSet<>();
+        Random random = new Random();
+
+        while(numeros.size() < n){
+            int numero = random.nextInt(1000) + 1;
+            numeros.add(numero);
+        }
+
+        System.out.println("Saida:");
+        System.out.println(numeros);
+    }
+
+    public void questao7(){
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Digite uma frase:");
+        String frase = input.nextLine();
+
+
+        int[] frequencia = new int[256];
+
+
+        for (char c : frase.toCharArray()) {
+            if (c != ' ') {
+                frequencia[c]++;
+            }
+        }
+
+        System.out.println("Histograma de caracteres:");
+        for (int i = 0; i < frequencia.length; i++) {
+            if (frequencia[i] > 0) {
+                System.out.print((char) i + ": ");
+                for (int j = 0; j < frequencia[i]; j++) {
+                    System.out.print("*");
+                }
+                System.out.println();
+            }
+        }
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(Listaa1Application.class, args);
         Listaa1Application lista = new Listaa1Application();
-        lista.questao3();
+        lista.questao7();
 
     }
 
