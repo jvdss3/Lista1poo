@@ -118,6 +118,7 @@ public class Listaa1Application {
         SpringApplication.run(Listaa1Application.class, args);
         Listaa1Application lista = new Listaa1Application();
         lista.questao3();
+
     }
 
 
